@@ -1,0 +1,45 @@
+var shipImg,ship,seaImge,sea;
+function preload() {
+  
+ shipImg=loadAnimation("ship-1.png", "ship-2.png") ;
+ seaImge=loadImage("sea.png") ;
+
+}
+function setup() {
+  createCanvas(600,300);
+  
+  ship=createSprite(10,200,20,20);
+  ship.addAnimation("floating",shipImg);
+ship.scale=0.2;
+sea=createSprite(10,200,600,10);
+sea.x=sea.width/2;
+sea.velocityX=-2;
+sea.visible=true;
+}
+
+if (sea.x < 0) {
+  sea.x = sea.width / 2;
+}
+
+ship.collide(sea);
+   
+
+function draw() {
+  background(seaImge);
+
+
+
+  if(keyDown("right")){
+    ship.velocityX=2;
+  }
+ if(keyDown("left")){
+   ship.velocityX=-2;
+ }
+
+ if(keyDown("space")){
+   ship.velocityX=0;
+ }
+
+ship.collide(sea);
+ drawSprites();
+}
